@@ -77,9 +77,10 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-conn
-  .sync()
-  .then(() => {
-    app.listen(3000);
-  })
-  .catch((err) => console.log(err));
+// conn
+//   .sync()
+//   .then(() => {
+//     app.listen(3000);
+//   })
+//   .catch((err) => console.log(err));
+app.listen(3000);
