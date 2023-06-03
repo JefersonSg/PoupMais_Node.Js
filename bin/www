@@ -9,6 +9,9 @@ var debug = require('debug')('1-organiza-o:server');
 var http = require('http');
 const conn = require('../db/conn');
 
+const Transaction = require('../models/Transaction')
+const User = require('../models/User')
+
 /**
  * Get port from environment and store in Express.
  */

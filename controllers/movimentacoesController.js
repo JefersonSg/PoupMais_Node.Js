@@ -122,7 +122,6 @@ module.exports = class movimentacoesController {
       total_pago,
       UserId: req.session.userid,
     };
-    console.log(dados);
 
     try {
       await Transaction.create(dados);
