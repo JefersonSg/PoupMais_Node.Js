@@ -79,7 +79,6 @@
   animation: brilhoPositivo 3s ease infinite alternate;
 }
 
-
 @keyframes brilhoPositivo {
   from {
     box-shadow: 0px 0px 0px 0px #2FCA82;
