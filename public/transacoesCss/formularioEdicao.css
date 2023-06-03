@@ -1,0 +1,212 @@
+.editValueBg {
+  display: none;
+  position: fixed;
+  font-family: 'roboto', sans-serif;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+}
+
+.editValueBg.ativo {
+  display: flex;
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 200px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+.editValue {
+  position: absolute;
+  display: grid;
+  top: 100px;
+  gap: 5px;
+  width: 70%;
+  max-width: 620px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  height: auto;
+  box-shadow: 0 0 0 4px white;
+  animation: modal .4s forwards;
+  box-sizing: border-box;
+}
+
+#compraLabelEdit .editValue,
+#compra-conteudo .financas {
+  border: 10px solid #F92828;
+}
+
+#emprestimoLabelEdit .editValue,
+#emprestimo-conteudo .financas {
+  border: 10px solid #6D29D3;
+}
+
+#transferenciaLabelEdit .editValue,
+#pix-conteudo .financas {
+  border: 10px solid #32BCAD;
+}
+
+#vendaLabelEdit .editValue,
+#venda-conteudo .financas {
+  border: 10px solid #00920F;
+}
+
+.editValue #dataInfo,
+#valorFinEdit,
+#diferencaEdit {
+  pointer-events: none;
+}
+
+.editValue .form-img {
+  justify-self: center;
+  display: flex;
+  width: max-content;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 16px;
+  padding-top: 4px;
+}
+
+/* Imagens do cabeçalho de edição */
+
+#compraLabelEdit .form-img::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('../img/Movimentacoes/compra.svg');
+  width: 22px;
+  height: 22px;
+  left: -34px;
+  top: 0;
+}
+
+#vendaLabelEdit .form-img::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('../img/Movimentacoes/venda.svg');
+  width: 23px;
+  height: 22px;
+  left: -34px;
+  top: 0;
+}
+
+#transferenciaLabelEdit .form-img::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('../img/Movimentacoes/pix.svg');
+  width: 23px;
+  height: 22px;
+  left: -34px;
+  top: 0;
+}
+
+#emprestimoLabelEdit .form-img::before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-image: url('../img/Movimentacoes/emprestimo.svg');
+  width: 23px;
+  height: 22px;
+  left: -34px;
+  top: 0;
+}
+
+
+.botaoEdit {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 16px;
+  gap: 16px;
+}
+
+.editValue input,
+.editValue select {
+  padding: 5px 5px;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 8px;
+  border-radius: 0;
+  min-width: 96%;
+  max-width: 100%;
+}
+
+.editValue input:focus,
+.editValue select:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+#deletar,
+#editar {
+  font-family: 'roboto', sans-serif;
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+#editar::before {
+  content: "Editar";
+}
+
+#editar.ativo::before {
+  content: "Confirmar";
+}
+
+.confirmar {
+  position: absolute;
+  top: 30%;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #3f019d;
+  background-color: #f92828;
+}
+
+.confirmar.ativo {
+  display: grid;
+}
+
+.confirmar span {
+  grid-column:
+    1/-1;
+}
+
+#fecharForm,
+#fecharEdit {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f92828;
+  border: 1px solid black;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+}

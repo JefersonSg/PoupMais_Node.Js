@@ -1,0 +1,126 @@
+.modal-container,
+.modal-container-entrar {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container.ativo,
+.modal-container-entrar.ativo {
+  display: flex;
+}
+
+
+
+#criarConta,
+#entrar {
+  background-color: white;
+  padding: 20px;
+  border: 10px solid #38A1FF;
+  box-shadow: 0 0 0 4px white;
+  border-radius: 5px;
+  position: relative;
+  animation: modal .4s ease-out forwards;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.fechar {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #38A1FF;
+  border: 1px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+}
+
+#criarConta.ativo,
+#entrar.ativo {
+  display: grid;
+}
+
+.conteudo-formulario,
+.formulario-entrar {
+  background-color: white;
+  display: grid;
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+.conteudo-formulario label,
+.formulario-entrar label {
+  display: block;
+  font-family: 'poppins';
+  margin: 1rem 0 .1rem;
+}
+
+.conteudo-formulario,
+.formulario-entrar {
+  font-family: 'roboto', sans-serif;
+  width: 240px;
+  box-sizing: border-box;
+  margin: 0.7rem 0.5rem
+}
+
+@media (min-width:375px) {
+
+  #criarConta,
+  #entrar {
+    width: 330px;
+  }
+
+  .conteudo-formulario,
+  .formulario-entrar {
+    width: 260px;
+  }
+}
+
+@media (min-width:500px) {
+
+  #criarConta,
+  #entrar {
+    width: 380px;
+  }
+
+  .conteudo-formulario,
+  .formulario-entrar {
+    width: 300px;
+  }
+}
+
+#botaoFormulario,
+#botaoFormularioEntrar {
+  color: white;
+  letter-spacing: 1.1px;
+  margin-top: 32px;
+  background: linear-gradient(#38A1FF, #1F88E5);
+  border: 1px solid #166EBD;
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: max-content;
+  justify-self: center;
+  cursor: pointer;
+}

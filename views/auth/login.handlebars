@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PoupMais</title>
+  <link rel=" stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/inicial.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="principal">
+    <div class="content-Titulo">
+      <h1 class="font-p-sb titulo">Organize e descomplique a sua vida financeira </h1>
+    </div>
+    <div class="content-img">
+      <img class="ilustracao" src="./img/Ilustração inicial.svg" alt="ilustracão">
+    </div>
+    <div class="botoes">
+      <button class="botao-conta font-p-sb">Criar conta</button>
+      <span class="font-p-r">ou</span>
+      <button class="botao-entrar font-p-sb">Entrar</button>
+    </div>
+
+    <section class="modal-container" data-modal="container">
+      <div id="criarConta">
+        <button data-modal="fechar" class="fechar">X</button>
+        <form class="conteudo-formulario" action="/register" method="post">
+          <label for="name">Nome</label>
+          <input name="name" type="text" id="name">
+
+          <label for="surname">Sobrenome</label>
+          <input name="surname" type="text" id="surname">
+
+          <label for="user_name">Nome de usuario</label>
+          <input name="user_name" type="text" id="user_name">
+
+          <label for="password">Senha</label>
+          <input name="password" type="password" id="password">
+
+           <label for="confirmpassword">Repita a senha</label>
+          <input name="confirmpassword" type="password" id="confirmpassword">
+
+          <button type="submit" id="botaoFormulario" class="font-p-sb">CONFIRMAR</button>
+        </form>
+      </div>
+    </section>
+    <section class="modal-container-entrar" data-modal="container">
+      <div id="entrar">
+        <button data-modal="fechar" class="fechar">X</button>
+        <form class="formulario-entrar" action="/login" method="post">
+
+          <label for="user_name">Nome de usuario</label>
+          <input name="user_name" type="text" id="user_name">
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password">
+
+          <a href="./recover.html">Esqueci minha senha</a>
+          <button type="submit" id="botaoFormularioEntrar" class="font-p-sb">ENTRAR</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+</body>
+<script src="./script/inicial.js"></script>
+
+<script src="/script/modal.js"></script>
+
+</html>
