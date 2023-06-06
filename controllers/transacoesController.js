@@ -12,7 +12,7 @@ module.exports = class transacoesController {
       where: { id: req.session.userid },
       plain: true,
     });
-    const userInfos = user.dataValues;
+    const userInfos = user ? user.dataValues : false;
 
     const transacoesSujas = await Transaction.findAll({
       where: { UserId: req.session.userid },
