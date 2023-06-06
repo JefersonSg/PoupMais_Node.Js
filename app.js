@@ -1,12 +1,13 @@
+var createError = require('http-errors');
 var express = require('express');
 const exphbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const flash = require('express-flash');
-const conn = require('./db/conn');
 
 // Routes
 var movimentacoesRouter = require('./routes/movimentacoesRouter');
@@ -77,10 +78,15 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-conn
-  .sync()
-  // .sync({ force: true })
-  .then(() => {
-    app.listen(3000);
-  })
-  .catch((err) => console.log(err));
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
