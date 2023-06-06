@@ -16,7 +16,7 @@ module.exports = class movimentacoesController {
       where: { id: req.session.userid },
       plain: true,
     });
-    const userInfos = user.dataValues;
+    const userInfos = user ? user.dataValues : false;
 
     const transferenciaEnviadaBruto = await Transaction.findAll({
       where: {

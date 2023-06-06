@@ -1,12 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-// const sequelize = new Sequelize('poupmais', 'root', '', {
-//   host: 'localhost',
-//   dialect: 'mysql',
-// });
-
-const sequelize = new Sequelize('poupmais', 'root', 'SenhaServer132*', {
-  host: 'localhost',
+const sequelize = new Sequelize('poupmais', 'root', '', {
+  host: '34.173.171.235',
   dialect: 'mysql',
 });
 
