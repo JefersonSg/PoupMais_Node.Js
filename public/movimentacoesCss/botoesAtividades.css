@@ -41,41 +41,41 @@
 }
 
 
-#compra-button::before {
+#despesa-button::before {
   content: "";
   display: block;
-  background-image: url("../img/Movimentacoes/compra.svg");
+  background-image: url("../img/Movimentacoes/despesa.svg");
   width: 22px;
   height: 22px;
 }
 
-#compra-button::after {
+#despesa-button::after {
   content: "Despesa";
   display: block;
 }
 
-#venda-button::before {
+#receita-button::before {
   content: "";
   display: block;
-  background-image: url("../img/Movimentacoes/venda.svg");
+  background-image: url("../img/Movimentacoes/receita.svg");
   width: 22px;
   height: 22px;
 }
 
-#venda-button::after {
+#receita-button::after {
   content: "Receita";
   display: block;
 }
 
-#pix-button::before {
+#transferencia-button::before {
   content: "";
   display: block;
-  background-image: url("../img/Movimentacoes/pix.svg");
+  background-image: url("../img/Movimentacoes/transferencia.svg");
   width: 23px;
   height: 22px;
 }
 
-#pix-button::after {
+#transferencia-button::after {
   content: "Transferencia";
   display: block;
 }
@@ -99,9 +99,9 @@
     gap: 16px 32px;
   }
 
-  #compra-button,
-  #venda-button,
-  #pix-button,
+  #despesa-button,
+  #receita-button,
+  #transferencia-button,
   #emprestimo-button {
     width: 140px;
     height: 50px;

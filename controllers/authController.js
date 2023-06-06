@@ -1,3 +1,4 @@
+const Categoria = require('../models/Categoria');
 const User = require('../models/User');
 
 const bcrypt = require('bcryptjs');
@@ -76,9 +77,33 @@ module.exports = class AuthController {
       user_name,
       password: hashedPassword,
     };
-
     try {
       const createdUser = await User.create(user);
+      await Categoria.bulkCreate([
+        {
+          categoria: 'Produtos Eletronicos',
+          tipo: 1,
+          UserId: createdUser.id,
+        },
+        { categoria: 'Roupas', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Contas', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Transporte', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Despesas médicas', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Cuidados pessoais', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Entretenimento', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Remédio', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Alimentação', tipo: 1, UserId: createdUser.id },
+        { categoria: 'Cosmeticos', tipo: 1, UserId: createdUser.id },
+
+        // receitas
+        { categoria: 'Salário', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Investimentos', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Vendas', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Comissões', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Aluguel', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Reembolso', tipo: 2, UserId: createdUser.id },
+        { categoria: 'Juros', tipo: 2, UserId: createdUser.id },
+      ]);
 
       // initialize session
 

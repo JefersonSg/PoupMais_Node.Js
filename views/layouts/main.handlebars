@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Movimentações</title>
+  <title>PoupMais Node.Js</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@100;300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/global.css" />
@@ -21,7 +21,11 @@
       <ul class="perfil-ul">
         <img class="img-perfil" src="./img/Movimentacoes/account_circle_FILL0_wght300_GRAD0_opsz48.svg" />
         <li>
+          {{#if userInfos}}
+         <span class="font-p-m nome-login"> Olá, {{userInfos.name}} <span class="sobrenome">{{userInfos.surname}}</span></span>
+          {{else}}
           <span class="font-p-m nome-login"></span>
+          {{/if}}
         </li>
       </ul>
       <li class="links">
@@ -39,4 +43,7 @@
     {{/if}}
   {{{body}}}
 </body>
+<script src="./script/movimentacoes.js"></script>
+<script src="./script/ativarForm.js"></script>
+
 </html>

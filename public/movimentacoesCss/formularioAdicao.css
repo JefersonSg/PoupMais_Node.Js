@@ -36,7 +36,7 @@
   padding-top: 4px;
 }
 
-#compra-conteudo .form-img::before {
+#despesa-conteudo .form-img::before {
   content: '';
   display: block;
   position: absolute;
@@ -47,22 +47,22 @@
   top: 0;
 }
 
-#venda-conteudo .form-img::before {
+#receita-conteudo .form-img::before {
   content: '';
   display: block;
   position: absolute;
-  background-image: url('../img/Movimentacoes/venda.svg');
+  background-image: url('../img/Movimentacoes/receita.svg');
   width: 23px;
   height: 22px;
   left: -34px;
   top: 0;
 }
 
-#pix-conteudo .form-img::before {
+#transferencia-conteudo .form-img::before {
   content: '';
   display: block;
   position: absolute;
-  background-image: url('../img/Movimentacoes/pix.svg');
+  background-image: url('../img/Movimentacoes/transferencia.svg');
   width: 24px;
   height: 22px;
   left: -34px;

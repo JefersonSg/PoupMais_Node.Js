@@ -45,8 +45,8 @@
   box-sizing: border-box;
 }
 
-#compraLabelEdit .editValue,
-#compra-conteudo .financas {
+#despesaLabelEdit .editValue,
+#despesa-conteudo .financas {
   border: 10px solid #F92828;
 }
 
@@ -56,12 +56,12 @@
 }
 
 #transferenciaLabelEdit .editValue,
-#pix-conteudo .financas {
+#transferencia-conteudo .financas {
   border: 10px solid #32BCAD;
 }
 
-#vendaLabelEdit .editValue,
-#venda-conteudo .financas {
+#receitaLabelEdit .editValue,
+#receita-conteudo .financas {
   border: 10px solid #00920F;
 }
 
@@ -84,22 +84,22 @@
 
 /* Imagens do cabeçalho de edição */
 
-#compraLabelEdit .form-img::before {
+#despesaLabelEdit .form-img::before {
   content: '';
   display: block;
   position: absolute;
-  background-image: url('../img/Movimentacoes/compra.svg');
+  background-image: url('../img/Movimentacoes/despesa.svg');
   width: 22px;
   height: 22px;
   left: -34px;
   top: 0;
 }
 
-#vendaLabelEdit .form-img::before {
+#receitaLabelEdit .form-img::before {
   content: '';
   display: block;
   position: absolute;
-  background-image: url('../img/Movimentacoes/venda.svg');
+  background-image: url('../img/Movimentacoes/receita.svg');
   width: 23px;
   height: 22px;
   left: -34px;
@@ -110,7 +110,7 @@
   content: '';
   display: block;
   position: absolute;
-  background-image: url('../img/Movimentacoes/pix.svg');
+  background-image: url('../img/Movimentacoes/transferencia.svg');
   width: 23px;
   height: 22px;
   left: -34px;
@@ -156,12 +156,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
+#enviar,
 #deletar,
 #editar {
   font-family: 'roboto', sans-serif;
   padding: 10px 15px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+}
+#enviar {
+  display: none;
 }
 
 #editar::before {
@@ -174,12 +178,17 @@
 
 .confirmar {
   position: absolute;
+  top: 35%;
+  left: 50%;
+  width: max-content;
+  transform: translate3d(-50%, -50%, 0);
   display: none;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 20px;
   border: 1px solid #3f019d;
   background-color: #f92828;
+  z-index: 9999;
 }
 
 .confirmar.ativo {
@@ -191,6 +200,9 @@
     1/-1;
 }
 
+.confirmar button {
+  width: 70px;
+}
 #fecharForm,
 #fecharEdit {
   position: absolute;

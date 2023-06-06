@@ -46,7 +46,7 @@ p#data {
   text-align: start;
 }
 
-#vendaLabel #valor {
+#receitaLabel #valor {
   color: green;
   font-weight: 600;
 }

@@ -1,5 +1,6 @@
 const btnForm = document.querySelectorAll('.btnForm');
 const formularios = document.querySelectorAll('.transacao');
+const editoresBg = document.querySelector('#editores');
 
 function addAtivo(item) {
   btnForm.forEach((i) => {
@@ -11,7 +12,6 @@ function addAtivo(item) {
   document.body.style.overflow = 'hidden';
 
   formularios.forEach((formulario) => {
-    console.log(formulario);
     if (formulario.getAttribute('value') == item.value) {
       formulario.classList.toggle('ativo');
     } else {
@@ -42,4 +42,48 @@ formularios.forEach((i, n) => {
       document.body.style.overflow = 'auto';
     }
   });
+});
+
+// ativar form de edição
+
+const labeldeAtivação = document.querySelector('#movimentacoes-conteudo');
+
+labeldeAtivação.addEventListener('click', function (e) {
+  let itemClicado = e.target;
+
+  if (itemClicado.classList.contains('movimentacoesLista')) {
+    const numero = itemClicado.getAttribute('numero');
+    const formEdit = document.querySelector(`.numero${numero}`);
+    formEdit.classList.add('ativo');
+    return;
+  }
+  itemClicado = itemClicado.parentElement;
+  if (itemClicado.classList.contains('movimentacoesLista')) {
+    const numero = itemClicado.getAttribute('numero');
+    const formEdit = document.querySelector(`.numero${numero}`);
+    formEdit.classList.add('ativo');
+    return;
+  }
+});
+
+// remover ativo do editor
+
+editoresBg.addEventListener('click', function (e) {
+  const itemClicado = e.target;
+
+  let formAtivo = editoresBg.querySelector('.editValueBg.ativo');
+  let div = formAtivo.querySelector('.editValue');
+  const fechar = formAtivo.querySelector('#fecharEdit');
+  const numero = div.getAttribute('numero');
+  const formDelete = document.querySelector(`#form${numero}`);
+
+  if (!div.contains(itemClicado) && !formDelete.contains(itemClicado)) {
+    formDelete.classList.remove('ativo');
+    formAtivo.classList.remove('ativo');
+    return;
+  } else if (fechar.contains(e.target)) {
+    formDelete.classList.remove('ativo');
+    formAtivo.classList.remove('ativo');
+    return;
+  }
 });

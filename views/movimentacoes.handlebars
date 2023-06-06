@@ -1,356 +1,531 @@
 <head>
   <link rel="stylesheet" href="./movimentacoesCss/movimentacoes.css" />
 </head>
-  <section class="financas-bg">
-    <div class="selecao-radio">
-      <div class="saldo-geral">
-        <h3 class="saldo font-r-m">Saldo</h3>
-        {{#if positivo}}
-        <span class="status font-r-m positivo">Positivo</span>
-        {{else neutro}}
-        <span class="status font-r-m  neutro">Neutro</span>
-        {{else negativo}}
-        <span class="status font-r-m  negativo">Negativo</span>
-        {{/if }}
+<section class="financas-bg">
+  <div class="selecao-radio">
+    <div class="saldo-geral">
+      <h3 class="saldo font-r-m">Saldo</h3>
+      {{#if positivo}}
+      <span class="status font-r-m positivo">Positivo</span>
+      {{else neutro}}
+      <span class="status font-r-m  neutro">Neutro</span>
+      {{else negativo}}
+      <span class="status font-r-m  negativo">Negativo</span>
+      {{/if }}
+    </div>
+
+    {{#if soma}}
+    <h4 class="valor font-p-sb">R$ {{soma}}</h4>
+
+    {{else}}
+    <h4 class="valor font-p-sb">R$ 0,00</h4>
+    {{/if}}
+    <p class="texto">Adicione novas atividades</p>
+    <div class="selecao-conteudo">
+      <button type="button" value="despesa" class="btnForm" id="despesa-button"></button>
+      <button type="button" value="receita" class="btnForm" id="receita-button"></button>
+      <button type="button" value="transferencia" class="btnForm" id="transferencia-button"></button>
+      <button type="button" value="emprestimo" class="btnForm" id="emprestimo-button"></button>
+    </div>
+</section>
+<div class="transacao" value="despesa" id="despesa-conteudo">
+  <div class="financas">
+    <span id="fecharForm">X</span>
+    <div class="form-img">
+      <p>Nova Despesa</p>
+    </div>
+    <form action="movimentacoes/insert" class="financas-formulario" method="post">
+
+      <input type="hidden" value="despesa" id="tipo" name="tipo">
+
+      <div class="div-movimentacao">
+        <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
       </div>
-      <div class="dropDownEdit">
-        <div class="menu"></div>
+
+      <div class="div-valor">
+        <input type="number" id="valorInput" name="valor" placeholder="Valor" />
+      </div>
+
+      <div class="div-categoria">
+        <input type="text" value="Categoria" name="categoria" class="valorCategoria" readonly>
+        <ul class="categoriaEscolha categoriaEscolhaDespesa" id="categoriaInit">
+          {{#each DespesasLista}}
+          <li class="valoresCategoria">{{this.categoria}}</li>
+          {{/each}}
+          <div class="botoesCategorias">
+            <button id="novaCategoria" type="button"></button>
+            <button id="ApagarCategoria" type="button"></button>
+          </div>
         </ul>
       </div>
-      {{#if soma}}
-      <h4 class="valor font-p-sb">R$ {{soma}}</h4>
 
-      {{else}}
-      <h4 class="valor font-p-sb">R$ 0,00</h4>
-      {{/if}}
-      <p class="texto">Adicione novas atividades</p>
-      <div class="selecao-conteudo">
-        <button type="button" value="compra" class="btnForm" id="compra-button"></button>
-        <button type="button" value="venda" class="btnForm" id="venda-button"></button>
-        <button type="button" value="transferencia" class="btnForm" id="pix-button"></button>
-        <button type="button" value="emprestimo" class="btnForm" id="emprestimo-button"></button>
+      <div class="div-data">
+        <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
       </div>
-  </section>
-  <div class="transacao" value="compra" id="compra-conteudo">
-    <div class="financas">
-      <span id="fecharForm">X</span>
-      <div class="form-img">
-        <p>Nova Despesa</p>
+
+      <div class="div-parcelas">
+        <select required name="parcelas" id="parcelas">
+          <option disabled style="display:none ;" value="0">parcelas 0x</option>
+          <option selected value="1">Parcelas 1x</option>
+          <option value="2">Parcelas 2x</option>
+          <option value="3">Parcelas 3x</option>
+          <option value="4">Parcelas 4x</option>
+          <option value="5">Parcelas 5x</option>
+          <option value="6">Parcelas 6x</option>
+          <option value="7">Parcelas 7x</option>
+          <option value="8">Parcelas 8x</option>
+          <option value="9">Parcelas 9x</option>
+          <option value="10">Parcelas 10x</option>
+          <option value="11">Parcelas 11x</option>
+          <option value="12">Parcelas 12x</option>
+        </select>
       </div>
-      <form action="movimentacoes/insert" class="financas-formulario" method="post"> 
 
-      <input type="hidden" value="compra" id="tipo" name="tipo">
+      <div class="div-total">
+        <input type="text" id="total" name="total" readonly placeholder="Total" />
+      </div>
 
-        <div class="div-movimentacao">
-          <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
-        </div>
-
-        <div class="div-valor">
-          <input type="number" id="valorInput" name="valor" placeholder="Valor" />
-        </div>
-
-        <div class="div-categoria">
-          <input type="text" value="Categoria" name="categoria" class="valorCategoria" readonly>
-          <ul class="categoriaEscolha categoriaEscolhaDespesa" id="categoriaInit">
-            <div class="botoesCategorias">
-              <button id="novaCategoria" type="button"></button>
-              <button id="ApagarCategoria" type="button"></button>
-            </div>
-          </ul>
-        </div>
-
-        <div class="div-data">
-          <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data"/>
-        </div>
-
-        <div class="div-parcelas">
-          <select required name="parcelas" id="parcelas">
-            <option disabled style="display:none ;" value="0">parcelas 0x</option>
-            <option selected value="1">Parcelas 1x</option>
-            <option value="2">Parcelas 2x</option>
-            <option value="3">Parcelas 3x</option>
-            <option value="4">Parcelas 4x</option>
-            <option value="5">Parcelas 5x</option>
-            <option value="6">Parcelas 6x</option>
-            <option value="7">Parcelas 7x</option>
-            <option value="8">Parcelas 8x</option>
-            <option value="9">Parcelas 9x</option>
-            <option value="10">Parcelas 10x</option>
-            <option value="11">Parcelas 11x</option>
-            <option value="12">Parcelas 12x</option>
-          </select>
-        </div>
-
-        <div class="div-total">
-          <input type="text" id="total" name="total" readonly placeholder="Total" />
-        </div>
-
-        <div class="div-botao">
-          <button id="botao-add" type="submit">
-            Adicionar
-            <img src="./img/Movimentacoes/Component15.svg" alt="" />
-          </button>
-        </div>
-      </form>
-    </div>
+      <div class="div-botao">
+        <button id="botao-add" type="submit">
+          Adicionar
+          <img src="./img/Movimentacoes/Component15.svg" alt="" />
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 
-  <div class="transacao" value="venda" id="venda-conteudo">
-    <div class="financas">
-      <span id="fecharForm">X</span>
-      <div class="form-img">
-        <p>Nova Receita</p>
-      </div>
-      <form action="movimentacoes/insert" class="financas-formulario" method="post"> 
-
-      <input type="hidden" value="venda" id="tipo" name="tipo">
-
-        <div class="div-movimentacao">
-          <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
-        </div>
-
-        <div class="div-valor">
-          <input type="number" id="valorInput" name="valor" placeholder="Valor" />
-        </div>
-
-        <div class="div-categoria">
-          <input type="text" name="categoria" value="Categoria" class="valorCategoria" readonly>
-          <ul class="categoriaEscolha categoriaEscolhaReceita" id="categoriaInit">
-            <div class="botoesCategorias">
-              <button id="novaCategoria" type="button"></button>
-              <button id="ApagarCategoria" type="button"></button>
-            </div>
-          </ul>
-        </div>
-
-        <div class="div-data">
-          <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
-        </div>
-
-        <div class="div-parcelas">
-          <select required name="parcelas" id="parcelas">
-            <option disabled style="display:none ;" value="0">parcelas 0x</option>
-            <option selected value="1">Parcelas 1x</option>
-            <option value="2">Parcelas 2x</option>
-            <option value="3">Parcelas 3x</option>
-            <option value="4">Parcelas 4x</option>
-            <option value="5">Parcelas 5x</option>
-            <option value="6">Parcelas 6x</option>
-            <option value="7">Parcelas 7x</option>
-            <option value="8">Parcelas 8x</option>
-            <option value="9">Parcelas 9x</option>
-            <option value="10">Parcelas 10x</option>
-            <option value="11">Parcelas 11x</option>
-            <option value="12">Parcelas 12x</option>
-          </select>
-        </div>
-
-        <div class="div-total">
-          <input type="text" id="total" name="total" readonly placeholder="Total" />
-        </div>
-
-        <div class="div-botao">
-          <button id="botao-add" type="submit">
-            Adicionar
-            <img src="./img/Movimentacoes/Component15.svg" alt="" />
-          </button>
-        </div>
-      </form>
+<div class="transacao" value="receita" id="receita-conteudo">
+  <div class="financas">
+    <span id="fecharForm">X</span>
+    <div class="form-img">
+      <p>Nova Receita</p>
     </div>
-  </div>
+    <form action="movimentacoes/insert" class="financas-formulario" method="post">
 
-  <div class="transacao" value="transferencia" id="pix-conteudo">
+      <input type="hidden" value="receita" id="tipo" name="tipo">
 
-    <div class="financas">
-      <span id="fecharForm">X</span>
-      <div class="form-img">
-        <p>Nova transferencia</p>
+      <div class="div-movimentacao">
+        <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
       </div>
 
-      <form action="movimentacoes/insert" class="financas-formulario" method="post"> 
+      <div class="div-valor">
+        <input type="number" id="valorInput" name="valor" placeholder="Valor" />
+      </div>
+
+      <div class="div-categoria">
+        <input type="text" name="categoria" value="Categoria" class="valorCategoria" readonly>
+        <ul class="categoriaEscolha categoriaEscolhaReceita" id="categoriaInit">
+          {{#each ReceitasLista}}
+          <li class="valoresCategoria">{{this.categoria}}</li>
+          {{/each}}
+          <div class="botoesCategorias">
+            <button id="novaCategoria" type="button"></button>
+            <button id="ApagarCategoria" type="button"></button>
+          </div>
+        </ul>
+      </div>
+
+      <div class="div-data">
+        <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
+      </div>
+
+      <div class="div-parcelas">
+        <select required name="parcelas" id="parcelas">
+          <option disabled style="display:none ;" value="0">parcelas 0x</option>
+          <option selected value="1">Parcelas 1x</option>
+          <option value="2">Parcelas 2x</option>
+          <option value="3">Parcelas 3x</option>
+          <option value="4">Parcelas 4x</option>
+          <option value="5">Parcelas 5x</option>
+          <option value="6">Parcelas 6x</option>
+          <option value="7">Parcelas 7x</option>
+          <option value="8">Parcelas 8x</option>
+          <option value="9">Parcelas 9x</option>
+          <option value="10">Parcelas 10x</option>
+          <option value="11">Parcelas 11x</option>
+          <option value="12">Parcelas 12x</option>
+        </select>
+      </div>
+
+      <div class="div-total">
+        <input type="text" id="total" name="total" readonly placeholder="Total" />
+      </div>
+
+      <div class="div-botao">
+        <button id="botao-add" type="submit">
+          Adicionar
+          <img src="./img/Movimentacoes/Component15.svg" alt="" />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="transacao" value="transferencia" id="transferencia-conteudo">
+
+  <div class="financas">
+    <span id="fecharForm">X</span>
+    <div class="form-img">
+      <p>Nova transferencia</p>
+    </div>
+
+    <form action="movimentacoes/insert" class="financas-formulario" method="post">
 
       <input type="hidden" value="transferencia" id="tipo" name="tipo">
-        <div class="div-movimentacao">
-          <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
-        </div>
-
-        <div class="div-categoria">
-          <select required name="enviou" id="categoriaInit">
-            <option selected value="" disabled style="display: none">
-              Enviou ou Recebeu?
-            </option>
-            <option value="true">Enviou</option>
-            <option value="false">Recebeu</option>
-          </select>
-        </div>
-
-        <div class="div-valor">
-          <input type="number" id="valorInput" name="valor" placeholder="Valor" />
-        </div>
-
-        <div class="div-data">
-          <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
-        </div>
-
-
-        <div class="div-total">
-          <input type="text" id="total" name="total" readonly placeholder="Total" />
-        </div>
-
-        <div class="div-botao">
-          <button id="botao-add" type="submit">
-            Adicionar
-            <img src="./img/Movimentacoes/Component15.svg" alt="" />
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="transacao" value="emprestimo" id="emprestimo-conteudo">
-    <div class="financas">
-      <span id="fecharForm">X</span>
-
-      <div class="form-img">
-        <p>Emprestimo</p>
+      <div class="div-movimentacao">
+        <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
       </div>
 
-      <form action="movimentacoes/insert" class="financas-formulario" method="post"> 
+      <input type="hidden" name="enviou" value="true">
+
+      <div class="div-valor">
+        <input type="number" id="valorInput" name="valor" placeholder="Valor" />
+      </div>
+
+      <div class="div-data">
+        <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
+      </div>
+
+
+      <div class="div-total">
+        <input type="text" id="total" name="total" readonly placeholder="Total" />
+      </div>
+
+      <div class="div-botao">
+        <button id="botao-add" type="submit">
+          Adicionar
+          <img src="./img/Movimentacoes/Component15.svg" alt="" />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="transacao" value="emprestimo" id="emprestimo-conteudo">
+  <div class="financas">
+    <span id="fecharForm">X</span>
+
+    <div class="form-img">
+      <p>Emprestimo</p>
+    </div>
+
+    <form action="movimentacoes/insert" class="financas-formulario" method="post">
 
       <input type="hidden" value="emprestimo" id="tipo" name="tipo">
 
-        <div class="div-movimentacao">
-          <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
-        </div>
+      <div class="div-movimentacao">
+        <input type="text" id="movimentacao" name="nome" placeholder="Nome da movimentacao" />
+      </div>
 
-        <div class="div-valor">
-          <input type="number" id="valorInput" name="valor" placeholder="Valor" />
-        </div>
+      <div class="div-valor">
+        <input type="number" id="valorInput" name="valor" placeholder="Valor" />
+      </div>
 
-        <div class="div-data">
-          <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
-        </div>
+      <div class="div-data">
+        <input type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" />
+      </div>
 
-        <div class="div-juros">
-          <select required name="juros" id="emprestimo-juros">
-            <option value="0">0% de juros</option>
-            <option value="1">1% de juros</option>
-            <option value="2">2% de juros</option>
-            <option value="3">3% de juros</option>
-            <option value="4">4% de juros</option>
-            <option value="5">5% de juros</option>
-            <option value="6">6% de juros</option>
-            <option value="7">7% de juros</option>
-            <option value="8">8% de juros</option>
-            <option value="9">9% de juros</option>
-            <option value="10">10% de juros</option>
-            <option value="11">11% de juros</option>
-            <option value="12">12% de juros</option>
-            <option value="13">13% de juros</option>
-            <option value="14">14% de juros</option>
-            <option value="15">15% de juros</option>
-            <option value="16">16% de juros</option>
-            <option value="17">17% de juros</option>
-            <option value="18">18% de juros</option>
-            <option value="19">19% de juros</option>
-            <option value="20">20% de juros</option>
-            <option value="21">21% de juros</option>
-            <option value="22">22% de juros</option>
-            <option value="23">23% de juros</option>
-            <option value="24">24% de juros</option>
-            <option value="25">25% de juros</option>
-            <option value="26">26% de juros</option>
-            <option value="27">27% de juros</option>
-            <option value="28">28% de juros</option>
-            <option value="29">29% de juros</option>
-            <option value="30">30% de juros</option>
-          </select>
-        </div>
+      <div class="div-juros">
+        <select required name="juros" id="emprestimo-juros">
+          <option value="0">0% de juros</option>
+          <option value="1">1% de juros</option>
+          <option value="2">2% de juros</option>
+          <option value="3">3% de juros</option>
+          <option value="4">4% de juros</option>
+          <option value="5">5% de juros</option>
+          <option value="6">6% de juros</option>
+          <option value="7">7% de juros</option>
+          <option value="8">8% de juros</option>
+          <option value="9">9% de juros</option>
+          <option value="10">10% de juros</option>
+          <option value="11">11% de juros</option>
+          <option value="12">12% de juros</option>
+          <option value="13">13% de juros</option>
+          <option value="14">14% de juros</option>
+          <option value="15">15% de juros</option>
+          <option value="16">16% de juros</option>
+          <option value="17">17% de juros</option>
+          <option value="18">18% de juros</option>
+          <option value="19">19% de juros</option>
+          <option value="20">20% de juros</option>
+          <option value="21">21% de juros</option>
+          <option value="22">22% de juros</option>
+          <option value="23">23% de juros</option>
+          <option value="24">24% de juros</option>
+          <option value="25">25% de juros</option>
+          <option value="26">26% de juros</option>
+          <option value="27">27% de juros</option>
+          <option value="28">28% de juros</option>
+          <option value="29">29% de juros</option>
+          <option value="30">30% de juros</option>
+        </select>
+      </div>
 
-        <div class="div-jurosMes">
-          <select required name="juros_composto" id="juros-compostos">
-            <option value="0">0% ao mes</option>
-            <option value="1">1% ao Mês</option>
-            <option value="2">2% ao Mês</option>
-            <option value="3">3% ao Mês</option>
-            <option value="4">4% ao Mês</option>
-            <option value="5">5% ao Mês</option>
-            <option value="6">6% ao Mês</option>
-            <option value="7">7% ao Mês</option>
-            <option value="8">8% ao Mês</option>
-            <option value="9">9% ao Mês</option>
-            <option value="10">10% ao Mês</option>
-            <option value="11">11% ao Mês</option>
-            <option value="12">12% ao Mês</option>
-          </select>
-        </div>
+      <div class="div-jurosMes">
+        <select required name="juros_composto" id="juros-compostos">
+          <option value="0">0% ao mes</option>
+          <option value="1">1% ao Mês</option>
+          <option value="2">2% ao Mês</option>
+          <option value="3">3% ao Mês</option>
+          <option value="4">4% ao Mês</option>
+          <option value="5">5% ao Mês</option>
+          <option value="6">6% ao Mês</option>
+          <option value="7">7% ao Mês</option>
+          <option value="8">8% ao Mês</option>
+          <option value="9">9% ao Mês</option>
+          <option value="10">10% ao Mês</option>
+          <option value="11">11% ao Mês</option>
+          <option value="12">12% ao Mês</option>
+        </select>
+      </div>
 
-        <div class="div-parcela-juros">
-          <select required name="parcelas" id="parcelas">
-            <option style="display: none;" disabled value="0">Parcelas 1x</option>
-            <option selected value="1">Parcelas 1x</option>
-            <option value="2">Parcelas 2x</option>
-            <option value="3">Parcelas 3x</option>
-            <option value="4">Parcelas 4x</option>
-            <option value="5">Parcelas 5x</option>
-            <option value="6">Parcelas 6x</option>
-            <option value="7">Parcelas 7x</option>
-            <option value="8">Parcelas 8x</option>
-            <option value="9">Parcelas 9x</option>
-            <option value="10">Parcelas 10x</option>
-            <option value="11">Parcelas 11x</option>
-            <option value="12">Parcelas 12x</option>
-          </select>
-        </div>
+      <div class="div-parcela-juros">
+        <select required name="parcelas" id="parcelas">
+          <option style="display: none;" disabled value="0">Parcelas 1x</option>
+          <option selected value="1">Parcelas 1x</option>
+          <option value="2">Parcelas 2x</option>
+          <option value="3">Parcelas 3x</option>
+          <option value="4">Parcelas 4x</option>
+          <option value="5">Parcelas 5x</option>
+          <option value="6">Parcelas 6x</option>
+          <option value="7">Parcelas 7x</option>
+          <option value="8">Parcelas 8x</option>
+          <option value="9">Parcelas 9x</option>
+          <option value="10">Parcelas 10x</option>
+          <option value="11">Parcelas 11x</option>
+          <option value="12">Parcelas 12x</option>
+        </select>
+      </div>
 
-        <div class="div-total emp">
-          <input type="text" id="total" name="total" readonly placeholder="Total parcelado" />
-        </div>
+      <div class="div-total emp">
+        <input type="text" id="total" name="total" readonly placeholder="Total parcelado" />
+      </div>
 
-        <div class="div-total">
-          <input type="text" id="totalPago" name="total_pago" readonly placeholder="Total" />
-        </div>
+      <div class="div-total">
+        <input type="text" id="totalPago" name="total_pago" readonly placeholder="Total" />
+      </div>
 
-        <div class="div-botao">
-          <button id="botao-add" type="submit">
-            Adicionar
-            <img src="./img/Movimentacoes/Component15.svg" alt="" />
-          </button>
-        </div>
-      </form>
-    </div>
+      <div class="div-botao">
+        <button id="botao-add" type="submit">
+          Adicionar
+          <img src="./img/Movimentacoes/Component15.svg" alt="" />
+        </button>
+      </div>
+    </form>
   </div>
-  <section class="movimentacoes-bg">
-    <h3 class="font-r-m ">Atividades recentes</h3>
-    <div id="movimentacoes-conteudo" class="movimentacoes-conteudo">
-      <form action="">
-        <table id="tabela">
-          <ul>
+</div>
+<section class="movimentacoes-bg">
+  <h3 class="font-r-m ">Atividades recentes</h3>
+  <div id="movimentacoes-conteudo" class="movimentacoes-conteudo">
+      <table id="tabela">
+        <ul>
           {{#each tabelas}}
-            <li class="movimentacoesLista" id="{{this.tipo}}Label">
-              <div class="icon icon-transacao">
-                <img src="./img/Movimentacoes/{{this.tipo}}.svg" alt="icone de transferencia">
-              </div>
-              <p id="nomeMov" class="nomeMov">{{this.nome}}</p>
-              <p id="valor" class="valorInit">R$ {{this.valor}}</p>
-              {{#if this.categoria}}
-              <p id="categoria">{{this.categoria}}</p>
-              {{else}}
-              <p class="valorFinal" id="valorFinal">{{this.total_pago}}</p>
-              {{/if}}
-              <p class="data" id="data">{{this.data}}</p>
-            </li>
+          <li class="movimentacoesLista" numero="{{this.id}}" id="{{this.tipo}}Label">
+            <div class="icon icon-transacao">
+              <img src="./img/Movimentacoes/{{this.tipo}}.svg" alt="icone de transferencia">
+            </div>
+            {{!-- emprestimo --}}
+            {{#if this.total_pago}}
+            <p id="nomeMov" class="nomeMov">Emprestou para {{this.nome}}</p>
+            <p id="valor" class="valorInit">R$ {{this.valor}}</p>
+            <p class="valorFinal" id="valorFinal">{{this.total_pago}}</p>
+            {{!-- transferencia --}}
+            {{else this.enviou}}
+            <p id="condicao">Transferencia enviada</p>
+            <p id="valor" class="valorInit">R$ {{this.valor}}</p>
+            <p id="categoria" class="">{{this.nome}}</p>
+            {{!-- Despesa / Receita --}}
+            {{else}}
+            <p id="nomeMov" class="nomeMov">{{this.nome}}</p>
+            <p id="valor" class="valorInit">R$ {{this.valor}}</p>
+            {{/if}}
+            {{#if this.categoria}}
+            <p id="categoria">{{this.categoria}}</p>
+            {{/if}}
+            <p class="data" id="data">{{this.data}}</p>
+          </li>
           {{/each}}
-          </ul>
-        </table>
-      </form>
-    </div>
-    </div>
-  </section>
-  <div id="editores"></div>
+        </ul>
+      </table>
+  </div>
+  </div>
+</section>
+<div id="editores">
+  {{#each tabelas}}
+  <form id="{{this.tipo}}LabelEdit" action="movimentacoes/edit" method="post" class="numero{{this.id}} editValueBg">
+    <input type="hidden" value="{{this.id}}" name="id">
 
-<script src="./script/movimentacoes.js"></script>
-<script src="./script/dropdown-menu.js"></script>
+    {{#if this.total_pago}}
+    <div class="editValue" numero="{{this.id}}">
+      <div class="form-img">
+        <p>Editar Emprestimo</p>
+      </div>
+      <span id="fecharEdit">X</span>
+      <label for="nomeEdit">Nome</label>
+      <input readonly name="nomeEdit" type="nome" value="{{this.nome}}" id="nomeEdit">
+
+      <label for="valorEdit">Valor</label>
+      <input readonly name="valor" type="number" id="valorEdit" value="{{this.valor}}">
+
+      <label for="dataInfo">Data</label>
+      <input readonly type="date" lang="pt-BR" format="dd/mm/yyyy" ;id="dataInfo" name="data" value="{{this.data}}" />
+
+      <label for="parcelasEdit">Parcelas</label>
+      <select disabled readonly name="parcelas" value="{{this.parcelas}}" id="parcelasEdit">
+        <option style="display:none ;" value="0">parcelas 0x</option>
+        <option value="1">Parcelas 1x</option>
+        <option value="2">Parcelas 2x</option>
+        <option value="3">Parcelas 3x</option>
+        <option value="4">Parcelas 4x</option>
+        <option value="5">Parcelas 5x</option>
+        <option value="6">Parcelas 6x</option>
+        <option value="7">Parcelas 7x</option>
+        <option value="8">Parcelas 8x</option>
+        <option value="9">Parcelas 9x</option>
+        <option value="10">Parcelas 10x</option>
+        <option value="11">Parcelas 11x</option>
+        <option value="12">Parcelas 12x</option>
+      </select>
+
+      <label for="jurosEdit">Juros</label>
+      <select disabled name="juros" value="{{this.juros}}" id="jurosEdit">
+        <option value="0">0% de juros</option>
+        <option value="1">1% de juros</option>
+        <option value="2">2% de juros</option>
+        <option value="3">3% de juros</option>
+        <option value="4">4% de juros</option>
+        <option value="5">5% de juros</option>
+        <option value="6">6% de juros</option>
+        <option value="7">7% de juros</option>
+        <option value="8">8% de juros</option>
+        <option value="9">9% de juros</option>
+        <option value="10">10% de juros</option>
+        <option value="11">11% de juros</option>
+        <option value="12">12% de juros</option>
+        <option value="13">13% de juros</option>
+        <option value="14">14% de juros</option>
+        <option value="15">15% de juros</option>
+        <option value="16">16% de juros</option>
+        <option value="17">17% de juros</option>
+        <option value="18">18% de juros</option>
+        <option value="19">19% de juros</option>
+        <option value="20">20% de juros</option>
+        <option value="21">21% de juros</option>
+        <option value="22">22% de juros</option>
+        <option value="23">23% de juros</option>
+        <option value="24">24% de juros</option>
+        <option value="25">25% de juros</option>
+        <option value="26">26% de juros</option>
+        <option value="27">27% de juros</option>
+        <option value="28">28% de juros</option>
+        <option value="29">29% de juros</option>
+        <option value="30">30% de juros</option>
+      </select>
+
+      <label for="jurosCompEdit">Juros ao mês</label>
+      <select disabled name="juros_compostos" value="{{this.juros_composto}}" id="jurosCompEdit">
+        <option value="0">0% ao mês</option>
+        <option value="1">1% ao mês</option>
+        <option value="2">2% ao mês</option>
+        <option value="3">3% ao mês</option>
+        <option value="4">4% ao mês</option>
+        <option value="5">5% ao mês</option>
+        <option value="6">6% ao mês</option>
+        <option value="7">7% ao mês</option>
+        <option value="8">8% ao mês</option>
+        <option value="9">9% ao mês</option>
+        <option value="10">10% ao mês</option>
+        <option value="11">11% ao mês</option>
+        <option value="12">12% ao mês</option>
+      </select>
+      <label for="diferencaEdit">Diferença</label>
+      <input readonly type="diferenca" id="diferencaEdit">
+      <label for="valorFinEdit">Valor Final</label>
+      <input readonly type="text" name="total_pago" value="{{this.total_pago}}" id="valorFinEdit">
+      <div class='botaoEdit'>
+        <button type="button" id="editar"></button>
+        <button type="submit" id="enviar">Confirmar</button>
+        <button type="button" id="deletar">Deletar</button>
+      </div>
+    </div>
+
+    {{else this.enviou}}
+    <div class="editValue" numero="{{this.id}}">
+      <div class="form-img">
+        <p>Editar Transferencia</p>
+      </div>
+      <span id="fecharEdit">X</span>
+      <label for="nomeEdit">Nome</label>
+      <input readonly name="nome" value="{{this.nome}}" type="text" id="nomeEdit">
+
+      <label for="valorEdit">Valor</label>
+      <input readonly name="valor" type="number" value="{{this.valor}}" id="valorEdit">
+
+      <label for="dataInfo">Data</label>
+      <input readonly type="date" lang="pt-BR" format="dd/mm/yyyy" ; id="dataInfo" name="data" value="{{this.data}}" />
+
+      <div class="botaoEdit">
+        <button type="button" id="editar"></button>
+        <button type="submit" id="enviar">Confirmar</button>
+        <button type="button" id="deletar">Deletar</button>
+      </div>
+
+    </div>
+    {{else}}
+    <div class="editValue" numero="{{this.id}}">
+      <div class="form-img">
+        <p>Editar {{this.tipo}}</p>
+      </div>
+      <span id="fecharEdit">X</span>
+      <label for="nomeEdit">Nome</label>
+      <input readonly type="text" name='nome' value="{{this.nome}}" id="nomeEdit">
+
+      <label for="valorEdit">Valor</label>
+      <input readonly name="valor" type="number" value="{{this.valor}}" id="valorEdit">
+
+      <label for="dataInfo">Data</label>
+      <input readonly type="date" lang="pt-BR" format="dd/mm/yyyy" ; id="dataInfo" name="data" value="{{this.data}}" />
+
+      <label for="categoriaEdit">Categoria</label>
+      <select disabled id="categoriaEdit" name="categoria" value="{{this.categoria}}">
+      </select>
+
+      <label for="parcelasEdit">Parcelas</label>
+      <select disabled readonly name="parcelas" value="{{this.parcelas}}" id="parcelasEdit">
+        <option value="1">Parcelas 1x</option>
+        <option value="2">Parcelas 2x</option>
+        <option value="3">Parcelas 3x</option>
+        <option value="4">Parcelas 4x</option>
+        <option value="5">Parcelas 5x</option>
+        <option value="6">Parcelas 6x</option>
+        <option value="7">Parcelas 7x</option>
+        <option value="8">Parcelas 8x</option>
+        <option value="9">Parcelas 9x</option>
+        <option value="10">Parcelas 10x</option>
+        <option value="11">Parcelas 11x</option>
+        <option value="12">Parcelas 12x</option>
+      </select>
+      <div class='botaoEdit'>
+        <button type="button" id="editar"></button>
+        <button type="submit" id="enviar">Confirmar</button>
+        <button type="button" id="deletar">Deletar</button>
+      </div>
+
+    </div>
+    {{/if}}
+  </form>
+  <div class="confirmar" id="form{{this.id}}">
+    <span>Deseja mesmo deletar?</span>
+    <form action="movimentacoes/deletar" method="post">
+      <input type="hidden" name="id" value="{{this.id}}">
+      <button type="submit" id="sim">Sim</button>
+    </form>
+    <button type="button" id="nao">Não</button>
+  </div>
+  {{/each}}
+
+</div>
+
 <script src="./script/editarCategorias.js"></script>
 <script src="./script/contas.js"></script>
-<script src="./script/contaEdit.js"></script>
-<script src="./script/ativarForm.js"></script>
+<script src="./script/contaTransacaoEdit.js"></script>

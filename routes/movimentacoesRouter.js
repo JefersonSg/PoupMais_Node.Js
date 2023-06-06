@@ -9,5 +9,7 @@ router.get('/', checkAuth, movimentacoesController.showHome);
 
 // POST
 router.post('/insert', checkAuth, movimentacoesController.insert);
+router.post('/deletar', checkAuth, movimentacoesController.delete);
+router.post('/edit', checkAuth, movimentacoesController.edit);
 
 module.exports = router;

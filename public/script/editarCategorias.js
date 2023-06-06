@@ -1,28 +1,6 @@
 const categoriaValor = document.querySelectorAll('.valorCategoria');
 const categoriaUl = document.querySelectorAll('.categoriaEscolha');
 
-let categoriasArrayDespesa = [
-  'Produtos Eletronicos',
-  'Roupas',
-  'Contas',
-  'Transporte',
-  'Despesas médicas',
-  'Cuidados pessoais',
-  'Entretenimento',
-  'Remédio',
-  'Alimentação',
-  'Cosmeticos',
-];
-let categoriasArrayReceita = [
-  'Salário',
-  'Investimentos',
-  'Vendas',
-  'Comissões',
-  'Aluguel',
-  'Reembolso',
-  'Juros',
-];
-
 // adicionar novas categorias a despesas e receitas
 
 categoriaValor.forEach((i, n) => {
@@ -30,19 +8,6 @@ categoriaValor.forEach((i, n) => {
     this.classList.toggle('ativo');
     categoriaUl[n].classList.toggle('ativo');
   });
-});
-
-categoriasArrayDespesa.forEach((i) => {
-  const li = document.createElement('li');
-  li.classList.add('valoresCategoria');
-  li.innerText = i;
-  categoriaUl[0].append(li);
-});
-categoriasArrayReceita.forEach((i) => {
-  const li = document.createElement('li');
-  li.classList.add('valoresCategoria');
-  li.innerText = i;
-  categoriaUl[1].append(li);
 });
 
 categoriaUl.forEach((i) => {
@@ -72,7 +37,6 @@ categoriaUl.forEach((i) => {
           li.innerText = valorDoInput;
           this.appendChild(li);
           novoInput.remove();
-          storage();
         } else {
           // REMOVE INPUT VAZIO
           novoInput.remove();
@@ -98,7 +62,6 @@ categoriaUl.forEach((i) => {
   i.addEventListener('click', function (e) {
     if (btnDeletar.classList.contains('ativo') && e.target.nodeName === 'LI') {
       e.target.remove();
-      storage();
     }
   });
 

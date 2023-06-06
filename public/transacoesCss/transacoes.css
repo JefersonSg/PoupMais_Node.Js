@@ -38,6 +38,7 @@ body {
   width: 100%;
   display: grid;
   max-width: 1200px;
+  gap: 8px 0;
 }
 
 .h2-transacao {
@@ -64,8 +65,8 @@ body {
   cursor: pointer;
 }
 
-.filtro-compra,
-.filtro-venda,
+.filtro-despesa,
+.filtro-receita,
 .filtro-transferencia,
 .filtro-emprestimo {
   display: grid;
@@ -83,8 +84,8 @@ body {
 
 }
 
-.filtro-compra:hover,
-.filtro-venda:hover,
+.filtro-despesa:hover,
+.filtro-receita:hover,
 .filtro-transferencia:hover,
 .filtro-emprestimo:hover {
   transform: translateY(-3px);
@@ -92,8 +93,8 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.0);
 }
 
-.filtro-compra.ativo,
-.filtro-venda.ativo,
+.filtro-despesa.ativo,
+.filtro-receita.ativo,
 .filtro-transferencia.ativo,
 .filtro-emprestimo.ativo {
   background-color: rgba(0, 0, 0, 0.02);
@@ -104,8 +105,8 @@ body {
 
 @media only screen and (max-width: 600px) {
 
-  .filtro-compra:hover,
-  .filtro-venda:hover,
+  .filtro-despesa:hover,
+  .filtro-receita:hover,
   .filtro-transferencia:hover,
   .filtro-emprestimo:hover {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
@@ -113,8 +114,8 @@ body {
     border: 1px solid rgba(0, 0, 0, 0);
   }
 
-  .filtro-compra.ativo,
-  .filtro-venda.ativo,
+  .filtro-despesa.ativo,
+  .filtro-receita.ativo,
   .filtro-transferencia.ativo,
   .filtro-emprestimo.ativo {
     background-color: rgba(0, 0, 0, 0.02);
@@ -124,8 +125,8 @@ body {
   }
 }
 
-.filtro-compra:active,
-.filtro-venda:active,
+.filtro-despesa:active,
+.filtro-receita:active,
 .filtro-transferencia:active,
 .filtro-emprestimo:active {
   transform: translateY(-1px);
